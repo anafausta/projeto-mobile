@@ -1,10 +1,6 @@
 # 🏅 Olympic Hub (OLITEF)
 
 <p align="center">
-  <img src="./assets/logo-olympic-hub.png" alt="Logo Olympic Hub" width="160" />
-</p>
-
-<p align="center">
   <b>Aplicativo Mobile de Educação Financeira e Preparatório Oficial para a OLITEF</b><br>
   <i>(Olimpíada do Tesouro Direto de Educação Financeira)</i>
 </p>
@@ -16,73 +12,40 @@ O **Olympic Hub** é um aplicativo mobile multiplataforma (Android e iOS) desenv
 
 ---
 
-## ✨ Principais Funcionalidades
+## Principais Funcionalidades
 
-### 🔐 1. Autenticação e Segurança Local
+### 1. Autenticação e Segurança Local
 * Cadastro e login de usuários gerenciados localmente no dispositivo via **SQLite (`expo-sqlite`)**.
 * **Criptografia Forte:** Derivação de chaves de senha via **PBKDF2 com SHA-256** e salt criptográfico aleatório (`expo-crypto` + `@noble/hashes`), prevenindo vazamento de credenciais.
 * Mensagens de erro unificadas contra enumeração de usuários por força bruta.
 
-### 🗺️ 2. Trilhas de Aprendizagem Interativas
+### 2. Trilhas de Aprendizagem Interativas
 * Módulos educativos divididos por pilares: *Educação Financeira, Planejamento, Investimentos e Consumo Consciente*.
 * Marcador de conclusão de aulas com persistência local e ganho de pontos de experiência (**+15 XP** por aula).
 * Suporte completo para leitura offline com carregamento instantâneo a partir do cache.
 
-### ⏱️ 3. Simulados Oficiais Cronometrados
+### 3. Simulados Oficiais Cronometrados
 * Banco de questões com enunciado e alternativas dinâmicas carregadas via nuvem (**Supabase**).
 * Cronômetro de contagem regressiva contínuo e de baixo consumo de bateria.
 * Feedback de desempenho detalhado ao final: total de acertos, erros, porcentagem de aproveitamento e premiação em XP.
 * Proteção contra inicialização de simulados sem conexão com a internet.
 
-### 📰 4. Artigos Educativos com Estratégia "Cache Primeiro"
+### 4. Artigos Educativos com Estratégia "Cache Primeiro"
 * Artigos teóricos com formatação rica e títulos destacados em fonte **Quicksand**.
 * Estratégia de rede resiliente com timeout de 8 segundos (`AbortController`) e fallback automático para cache local (`AsyncStorage`).
 
-### 🎮 5. Joguinhos Educativos (CrossSums)
+### 5. Joguinhos Educativos (CrossSums)
 * Mini-jogo matemático e lógico integrado para fixação de raciocínio financeiro.
 * Sistema de recompensas imediatas com adição de bônus de XP ao perfil do estudante.
 
-### 👤 6. Perfil do Estudante & Gamificação Isolada (Multi-tenant)
+### 6. Perfil do Estudante & Gamificação Isolada (Multi-tenant)
 * Painel com resumo de XP total acumulado, nível de experiência e quantidade de aulas concluídas.
 * **Isolamento de Dados por Usuário:** Os dados de progresso e XP são atrelados dinamicamente ao ID do usuário conectado. Se um aluno sair e outro logar no mesmo aparelho, os dados não se misturam.
 
 ---
 
-## 🏗️ Arquitetura e Fluxo Lógico
 
-O aplicativo adota um modelo híbrido eficiente:
-
-```mermaid
-flowchart TD
-    subgraph Aparelho [Dispositivo Móvel - Local]
-        UI[Interface React Native / Expo]
-        AuthDB[(SQLite Local: Usuários & Senhas Hash)]
-        Cache[(AsyncStorage: Cache Artigos, XP e Aulas)]
-        NetHook{useOnline / NetInfo}
-    end
-
-    subgraph Nuvem [Serviços Remotos]
-        SupaDB[(Supabase: Questões e Artigos Oficiais)]
-    end
-
-    UI <-->|Login / Cadastro Local| AuthDB
-    UI <-->|Salvar Progresso & XP por Usuário| Cache
-    UI <-->|Verifica Conexão| NetHook
-
-    NetHook -->|Online| SupaDB
-    SupaDB -->|Atualiza Dados| Cache
-    NetHook -->|Offline| Cache
-    Cache -->|Alimenta Conteúdo| UI
-```
-
-### Decisões Técnicas Importantes:
-1. **Identidade Visual Centralizada (`src/theme/identidadeVisual.js`):** Padrão de design tokens para cores globais (`coresGlobais.fundoPadrao`) e tipografia de destaque (`Quicksand`), eliminando duplicações e estilos conflitantes.
-2. **Suporte Nativo ao Botão Voltar (Android):** Mapeamento ultraleve em [App.js](file:///c:/Users/bonfa/OneDrive/Documentos/Projeto_Mobile/Projeto_Mobile/App.js) com `BackHandler`, com consumo zero de memória e desmontagem limpa de listeners.
-3. **Automação de Dependências (`patch-package`):** Correções nativas em bibliotecas de terceiros (`metro` e `expo-asset`) salvas em `.patch`, garantindo que compilações em qualquer computador ou servidor CI/CD funcionem sem erros manuais.
-
----
-
-## 🛠️ Tecnologias e Bibliotecas
+##  Tecnologias e Bibliotecas
 
 | Categoria | Biblioteca / Recurso | Finalidade |
 | :--- | :--- | :--- |
@@ -139,7 +102,7 @@ Projeto_Mobile/
 
 ---
 
-## 🚀 Como Executar o Projeto Localmente
+## Como Executar o Projeto Localmente
 
 ### Pré-requisitos
 * [Node.js](https://nodejs.org/) (versão 18 ou superior)
