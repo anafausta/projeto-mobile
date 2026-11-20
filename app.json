@@ -1,0 +1,43 @@
+{
+  "expo": {
+    "name": "Olympic Hub",
+    "slug": "olympic-hub",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#6500B8"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.letskysteam.olympichub"
+    },
+    "android": {
+      "package": "com.letskysteam.olympichub",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-sqlite",
+      "expo-status-bar",
+      "expo-font"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "a245b989-9cec-4016-be58-adb5f4c78561"
+      }
+    },
+    "owner": "faustaana"
+  }
+}
