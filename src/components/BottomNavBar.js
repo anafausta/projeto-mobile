@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { fontesDestaque } from '../theme/identidadeVisual';
 
-
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { HouseIcon } from '@solar-icons/react-native/bold-duotone/house'
 import { Routing3Icon } from '@solar-icons/react-native/bold-duotone/routing-3'
 import { ChecklistMinimalisticIcon } from '@solar-icons/react-native/bold-duotone/checklist-minimalistic'
@@ -23,6 +23,9 @@ export default function BottomNavBar({
   irParaArtigos,
   irParaPerfil,
 }) {
+
+  const insets = useSafeAreaInsets();
+
   const tabs = [
     {
       id: 'home',
@@ -62,8 +65,8 @@ export default function BottomNavBar({
   ];
 
   return (
-    <View style={styles.container}>
-      {tabs.map((tab) => {
+    <View style={[styles.container, { paddingBottom: insets.bottom > 0 ? insets.bottom +6 : 12 }]}>    
+        {tabs.map((tab) => {
         const Icone = tab.icone;
         const estaAtivo = tab.ativo;
 
@@ -98,7 +101,6 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: '#E2E8F0',
     paddingTop: 8,
-    paddingBottom: Platform.OS === 'ios' ? 24 : 10,
     justifyContent: 'space-around',
     alignItems: 'center',
     shadowColor: '#000',

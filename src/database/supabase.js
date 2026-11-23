@@ -1,7 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// Lê as variáveis do .env ou utiliza o fallback público do projeto garantindo funcionamento em builds nativos/offline
 const supabaseUrl =
   process.env.EXPO_PUBLIC_SUPABASE_URL ||
   'https://gbzslvmmwmripvhnjurs.supabase.co';
@@ -23,7 +22,7 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
 // Chave para cache local de artigos no AsyncStorage
 export const STORAGE_ARTIGOS_CACHE = '@olitef_artigos_cache';
 
-// Função auxiliar com Timeout (AbortController) para evitar que requisições fiquem travadas
+// Função auxiliar com Timeout para evitar que requisições fiquem travadas
 export async function executarComTimeout(promessaOuQuery, ms = 8000) {
   let timer;
   const timeoutPromise = new Promise((_, reject) => {
@@ -41,7 +40,7 @@ export async function executarComTimeout(promessaOuQuery, ms = 8000) {
   }
 }
 
-// Função para buscar as questões da nuvem e formatar para o simulado (com timeout)
+// Função para buscar as questões da nuvem e formatar para o simulado
 export async function buscarQuestoesSupabase() {
   const consulta = supabase
     .from('questoes')
@@ -55,7 +54,7 @@ export async function buscarQuestoesSupabase() {
     throw error;
   }
 
-  // Converte o formato do banco para o mesmo formato que a sua tela de simulado já espera!
+  // Converte o formato do banco para o mesmo formato que a sua tela de simulado
   return data.map((q) => ({
     id: q.id,
     enunciado: q.enunciado,
@@ -70,7 +69,7 @@ export async function buscarQuestoesSupabase() {
   }));
 }
 
-// Função para buscar os artigos da nuvem diretamente (com timeout)
+// Função para buscar os artigos da nuvem diretamente 
 export async function buscarArtigosSupabase() {
   const consulta = supabase
     .from('artigos')
@@ -94,8 +93,7 @@ export async function buscarArtigosSupabase() {
   }));
 }
 
-// Estratégia "Cache Primeiro" (Offline-First) para Artigos:
-// 1. Lê imediatamente o cache local do AsyncStorage (se houver)
+// 1. Lê imediatamente o cache local do AsyncStorage 
 // 2. Tenta atualizar com a rede em segundo plano
 // 3. Se estiver offline ou falhar, retorna com segurança os artigos em cache
 export async function buscarArtigosComCache() {
@@ -120,7 +118,6 @@ export async function buscarArtigosComCache() {
     if (cacheLocal && cacheLocal.length > 0) {
       return { dados: cacheLocal, fonte: 'cache' };
     }
-    // Se não tinha internet e nunca foi salvo em cache antes
     throw erroRede;
   }
 }

@@ -50,7 +50,7 @@ export default function ExecutarSimuladoScreen({ simulado, voltarParaLista, onFi
     }
   }, [fim, salvo, questoes.length]);
 
-  // 1. Carrega e sorteia da nuvem (RF52)
+  // 1. Carrega e sorteia
   useEffect(() => {
     (async () => {
       try {
@@ -72,7 +72,7 @@ export default function ExecutarSimuladoScreen({ simulado, voltarParaLista, onFi
     })();
   }, []);
 
-  // 2. Cronômetro (RF51/RF54) - timer contínuo sem recriação a cada segundo
+  // 2. Cronômetro
   useEffect(() => {
     if (!simulado.comTempo || fim || !questoes.length) return;
     const timer = setInterval(() => {
@@ -112,7 +112,7 @@ export default function ExecutarSimuladoScreen({ simulado, voltarParaLista, onFi
     );
   }
 
-  // Tela de Resultado (RF60, RF61)
+  // Tela de Resultado
   if (fim) {
     const acertos = questoes.filter((q, i) => respostas[i] === q.correto).length;
     const taxa = Math.round((acertos / questoes.length) * 100);
@@ -155,7 +155,7 @@ export default function ExecutarSimuladoScreen({ simulado, voltarParaLista, onFi
           </View>
         </View>
 
-        {/* Barra de Bolinhas das Questões (RF56/57) */}
+        {/* Barra de Bolinhas das Questões */}
         <ScrollView 
           ref={scrollNavRef}
           horizontal 
@@ -201,7 +201,7 @@ export default function ExecutarSimuladoScreen({ simulado, voltarParaLista, onFi
           })}
         </ScrollView>
 
-        {/* Rodapé: SÓ DEIXA AVANÇAR SE RESPONDEU */}
+        {/*SÓ DEIXA AVANÇAR SE RESPONDEU */}
         <View style={styles.rodape}>
           <TouchableOpacity 
             style={[styles.btnNavSecundario, atual === 0 && { opacity: 0.3 }]} 
@@ -218,7 +218,7 @@ export default function ExecutarSimuladoScreen({ simulado, voltarParaLista, onFi
               atual === questoes.length - 1 && styles.btnFinalizar,
               !respostas[atual] && { opacity: 0.3 } // Fica apagado
             ]} 
-            disabled={!respostas[atual]} // BLOQUEADO: NÃO PASSA SEM RESPONDER!
+            disabled={!respostas[atual]} // NÃO PASSA SEM RESPONDER!
             onPress={() => (atual === questoes.length - 1 ? finalizar() : setAtual(a => a + 1))}
           >
             <Text style={styles.txtBtn}>{atual === questoes.length - 1 ? 'Finalizar' : 'Próxima'}</Text>
@@ -231,44 +231,101 @@ export default function ExecutarSimuladoScreen({ simulado, voltarParaLista, onFi
 }
 
 const styles = StyleSheet.create({
-  area: { flex: 1, backgroundColor: coresGlobais.fundoPadrao },
-  container: { flex: 1, padding: 18 },
-  centro: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 },
-  txtCarregando: { marginTop: 12, color: '#6500B8', fontSize: 16, fontWeight: 'bold' },
+  area: { 
+    flex: 1, 
+    backgroundColor: coresGlobais.fundoPadrao 
+  },
+
+  container: { 
+    flex: 1, 
+    padding: 18
+  },
+  centro: { 
+    flex: 1, 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    padding: 20 
+  },
+  txtCarregando: {
+     marginTop: 12, 
+     color: '#6500B8', 
+     fontSize: 16,
+     fontWeight: 'bold' 
+    },
+
   topo: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 },
+
   txtSair: { color: '#DC2626', fontWeight: 'bold' },
-  boxTempo: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#FFF', paddingHorizontal: 10, paddingVertical: 5, borderRadius: 8, gap: 5, borderWidth: 1, borderColor: '#E2E8F0' },
+  
+  boxTempo: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#FFF', paddingHorizontal: 10, paddingVertical: 5, 
+  
+  borderRadius: 8, gap: 5, borderWidth: 1, borderColor: '#E2E8F0' },
+  
   txtTempo: { color: '#6500B8', fontWeight: 'bold', fontSize: 13 },
+  
   barraNav: { maxHeight: 42, marginBottom: 15 },
+  
   bolinha: { width: 34, height: 34, borderRadius: 17, backgroundColor: '#FFF', borderWidth: 1, borderColor: '#CBD5E1', justifyContent: 'center', alignItems: 'center', marginRight: 8 },
+  
   bolinhaResp: { backgroundColor: '#DCFCE7', borderColor: '#22C55E' },
+  
   bolinhaAtual: { borderWidth: 2, borderColor: '#6500B8' },
+  
   txtBolinha: { fontSize: 13, fontWeight: 'bold', color: '#64748B' },
+  
   txtBolinhaResp: { color: '#15803D' },
+  
   txtBolinhaAtual: { color: '#6500B8' },
+  
   numQuestao: { fontSize: 13, fontWeight: 'bold', color: '#6500B8', fontFamily: fontesDestaque.bold, marginBottom: 4 },
+  
   enunciado: { fontSize: 15, color: '#1E293B', lineHeight: 22, marginBottom: 15, fontWeight: '500' },
-  cardAlt: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#FFF', borderWidth: 1, borderColor: '#E2E8F0', borderRadius: 10, padding: 12, marginBottom: 8 },
+  
+  cardAlt: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#FFF', borderWidth: 1, borderColor: '#E2E8F0', borderRadius: 
+  10, padding: 12, marginBottom: 8 },
+  
   cardAltSel: { borderColor: '#6500B8', backgroundColor: '#F3E8FF' },
+  
   circuloLetra: { width: 28, height: 28, borderRadius: 14, borderWidth: 1, borderColor: '#CBD5E1', justifyContent: 'center', alignItems: 'center', marginRight: 10 },
+  
   circuloLetraSel: { backgroundColor: '#6500B8', borderColor: '#6500B8' },
+  
   txtLetra: { fontSize: 12, fontWeight: 'bold', color: '#64748B' },
+  
   txtAlt: { flex: 1, fontSize: 13, color: '#334155' },
+  
   txtAltSel: { color: '#6500B8', fontWeight: 'bold' },
+  
   rodape: { flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 },
+  
   btnNavSecundario: { flexDirection: 'row', alignItems: 'center', paddingVertical: 10, paddingHorizontal: 15, borderRadius: 8, borderWidth: 1, borderColor: '#CBD5E1', backgroundColor: '#FFF', gap: 5 },
+  
   txtBtnSec: { color: '#6500B8', fontWeight: 'bold', fontSize: 13 },
+  
   btnNavPrincipal: { flexDirection: 'row', alignItems: 'center', paddingVertical: 10, paddingHorizontal: 18, borderRadius: 8, backgroundColor: '#6500B8', gap: 5 },
+  
   btnFinalizar: { backgroundColor: '#16A34A' },
+  
   txtBtn: { color: '#FFF', fontWeight: 'bold', fontSize: 14 },
+  
   tituloResultado: { fontSize: 22, fontWeight: 'bold', color: '#1E293B', fontFamily: fontesDestaque.bold, marginBottom: 10 },
+  
   tagPontos: { backgroundColor: '#FEF3C7', paddingVertical: 6, paddingHorizontal: 16, borderRadius: 15, marginBottom: 18 },
+  
   txtPontos: { color: '#B45309', fontWeight: 'bold', fontFamily: fontesDestaque.bold, fontSize: 14 },
-  placar: { flexDirection: 'row', backgroundColor: '#FFF', borderRadius: 14, borderWidth: 1, borderColor: '#E2E8F0', padding: 15, width: '100%', justifyContent: 'space-around', marginBottom: 15 },
+  
+  placar: { flexDirection: 'row', backgroundColor: '#FFF', borderRadius: 14, borderWidth: 1, borderColor: '#E2E8F0', padding: 15, 
+  width: '100%', justifyContent: 'space-around', marginBottom: 15 },
+  
   colPlacar: { alignItems: 'center' },
+  
   numPlacar: { fontSize: 20, fontWeight: 'bold', color: '#1E293B', fontFamily: fontesDestaque.bold, marginTop: 3 },
+  
   legendaPlacar: { color: '#64748B', fontSize: 11 },
+  
   divisor: { width: 1, height: 35, backgroundColor: '#E2E8F0' },
+  
   txtAproveitamento: { fontSize: 15, color: '#334155', marginBottom: 25 },
+  
   btnPrincipal: { backgroundColor: '#6500B8', flexDirection: 'row', width: '100%', padding: 14, borderRadius: 10, justifyContent: 'center', alignItems: 'center' },
 });

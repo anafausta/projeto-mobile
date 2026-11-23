@@ -47,7 +47,6 @@ export default function SimuladosScreen({ voltar, irParaExecutarSimulado, online
           {/* Topo com botão voltar padrão */}
           <BotaoVoltar onPress={voltar} />
 
-          {/* Cabeçalho acadêmico e acolhedor */}
           <Text style={s.titulo}>Simulado</Text>
           <LinhaDivisoria />
 

@@ -1,5 +1,3 @@
-// Arquivo central de configurações globais de identidade visual
-// Define a cor de fundo padrão de todas as telas e a tipografia Quicksand para elementos de destaque.
 
 export const coresGlobais = {
   fundoPadrao: '#F8F5FC', // Cor de fundo única e padronizada para todo o aplicativo

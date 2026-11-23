@@ -100,10 +100,9 @@ export default function HomeScreen({
           </View>
         </View>
 
-        {/* Linhazinha Divisória */}
         <LinhaDivisoria />
 
-        {/* Card Contagem Regressiva - Fundo Roxo */}
+        {/* Card Contagem Regressiva*/}
         <View style={styles.cardEvento}>
           <View style={styles.cardEventoHeader}>
             <Text style={styles.tituloCardEvento}>Contagem regressiva</Text>
@@ -114,7 +113,6 @@ export default function HomeScreen({
 
           <Text style={styles.diasNumero}>{diasRestantes} dias</Text>
 
-          {/* Tag bonitinha da data com o reloginho */}
           <View style={styles.badgeData}>
             <StopwatchPlayIcon color="#5700B8" size={13} style={{ marginRight: 6 }} />
             <Text style={styles.txtBadgeData}>08 de setembro de 2027</Text>
@@ -125,7 +123,6 @@ export default function HomeScreen({
           </Text>
         </View>
 
-        {/* Linhazinha Divisória */}
         <LinhaDivisoria />
 
         {/* Seção Trilha de Estudos */}
@@ -149,7 +146,6 @@ export default function HomeScreen({
           <DoubleAltArrowRightIcon color="#5700B8" size={22} />
         </TouchableOpacity>
 
-        {/* Linhazinha Divisória */}
         <LinhaDivisoria />
 
         {/* Seção Atividades */}

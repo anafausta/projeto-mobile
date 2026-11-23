@@ -53,7 +53,6 @@ export default function LoginScreen({irParaCadastro, irParaHome}) {
       const usuarioEncontrado = await buscarUsuario(usuario);
 
       if (!usuarioEncontrado) {
-        // Em vez de diferenciar se foi email ou senha:
         Alert.alert('Erro ao entrar', 'E-mail ou senha inválidos.');
         return;
       }

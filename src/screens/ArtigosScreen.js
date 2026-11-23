@@ -41,7 +41,7 @@ export default function ArtigosListScreen({ voltar, irParaLerArtigo, artigosInic
 
         <Text style={styles.titulo}>Artigos</Text>
 
-        {/* Linhazinha Divisória Fina */}
+        
         <LinhaDivisoria />
 
         {artigos.map((artigo) => (

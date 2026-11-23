@@ -26,7 +26,7 @@ export default function DetalheEtapaScreen({
     async function carregar() {
       try {
         setCarregando(true);
-        // 1. Busca primeiro do cache offline (se não houver rede, carrega do celular!)
+        // 1. Busca primeiro do cache offline 
         const res = await buscarArtigosComCache();
         const todos = res?.dados || [];
         // 2. Filtra apenas os itens que pertencem às Trilhas

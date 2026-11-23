@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, BackHandler } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { 
   useFonts, 
@@ -283,6 +284,7 @@ export default function App() {
   }
 
   return (
+  <SafeAreaProvider>
     <View style={styles.appContainer}>
       {mostrarNavBar && <BannerOffline online={online} />}
       <View style={styles.telaContainer}>
@@ -374,6 +376,7 @@ export default function App() {
         />
       )}
     </View>
+    </SafeAreaProvider>
   );
 }
 

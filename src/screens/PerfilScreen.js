@@ -29,7 +29,7 @@ export default function PerfilScreen({
   const username = usuario?.usuario || 'estudante';
   const email = usuario?.email || 'estudante@olitef.com.br';
 
-  // Iniciais do nome para o Avatar (ex: "Ana Maria" -> "AM")
+  // Iniciais do nome para o Avatar 
   const partesNome = nomeCompleto.trim().split(' ');
   const iniciais =
     partesNome.length > 1
@@ -54,7 +54,6 @@ export default function PerfilScreen({
 
         <Text style={styles.tituloHeader}>Meu Perfil</Text>
 
-        {/* Linhazinha Divisória Fina */}
         <LinhaDivisoria />
 
         {/* Card Principal de Destaque */}

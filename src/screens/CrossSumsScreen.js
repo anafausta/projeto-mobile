@@ -15,6 +15,7 @@ import { StarCircleIcon } from '@solar-icons/react-native/bold/star-circle'
 import { MedalRibbonStarIcon } from '@solar-icons/react-native/bold/medal-ribbon-star'
 
 const { width } = Dimensions.get('window');
+
 // Calcula o tamanho das células para caber confortavelmente em qualquer celular
 const CELL_SIZE = Math.min(Math.floor((width - 70) / 4), 68);
 
@@ -141,7 +142,6 @@ export default function CrossSumsScreen({ voltar, onGanharXP }) {
   return (
     <SafeAreaView style={styles.safe}>
       <View style={styles.container}>
-        {/* Topo / Barra Superior */}
         <View style={styles.topo}>
           <BotaoVoltar onPress={voltar} texto="Sair" style={{ marginBottom: 0 }} />
 
@@ -157,7 +157,6 @@ export default function CrossSumsScreen({ voltar, onGanharXP }) {
           </View>
         </View>
 
-        {/* Título e Instruções (agrupados sem espaçamento exagerado) */}
         <View style={styles.header}>
           <Text style={styles.titulo}>Cross Sums</Text>
           <Text style={styles.subtitulo}>
@@ -165,7 +164,6 @@ export default function CrossSumsScreen({ voltar, onGanharXP }) {
           </Text>
         </View>
 
-        {/* Tabuleiro */}
         <View style={styles.tabuleiroContainer}>
           {puzzle.grid.map((row, r) => {
             const rowSum = getRowSum(r);
